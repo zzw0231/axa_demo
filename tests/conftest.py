@@ -5,9 +5,6 @@ from sqlalchemy.orm import sessionmaker
 
 from app.database.database import Base, get_db
 from app.main import app
-# Import models explicitly before table creation
-from app.models.user_model import \
-    User  # 🔹 Ensure this is imported before calling create_all()
 
 # Use an in-memory SQLite database for testing
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
