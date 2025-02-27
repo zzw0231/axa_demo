@@ -15,7 +15,15 @@ class BaseUserSchema(BaseModel):
         max_length=50,
         description="Name must be between 1 and 50 characters",
     )
-    email: EmailStr  # Ensures a valid email format
+    email: EmailStr
+
+    @field_validator("email", mode="before")
+    @classmethod
+    def to_lowercase(cls, value: str) -> str:
+        """Convert email to lowercase before EmailStr validation"""
+        if not value:
+            return value
+        return value.lower()
 
     @field_validator("name", mode="before")
     @classmethod
